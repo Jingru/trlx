@@ -325,7 +325,7 @@ class AcceleratePPOTrainer(AccelerateRLTrainer):
                 all_scores = [
                     score.view(-1)
                     if isinstance(score, torch.Tensor)
-                    else torch.tensor(score, dtype=torch.float, device=device).view(-1,)
+                    else torch.tensor(score, dtype=torch.float, device=device).view(-1)
                     for score in all_scores
                 ]
                 # Pad 0 reward on the ends

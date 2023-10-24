@@ -385,7 +385,9 @@ class AccelerateRLTrainer(BaseRLTrainer):
                 if self.config.model.model_arch_type == "seq2seq":
                     samples = samples[:, 1:].contiguous()
 
-                prompt_sizes = torch.tensor(prompts.input_ids.shape[1], device=samples.device).repeat(len(prompts.input_ids))
+                prompt_sizes = torch.tensor(prompts.input_ids.shape[1], device=samples.device).repeat(
+                    len(prompts.input_ids)
+                )
                 if self.config.train.reward_only_in_main_process:
                     prompts, samples, prompt_sizes = self.accelerator.gather_for_metrics(
                         self.accelerator.pad_across_processes(

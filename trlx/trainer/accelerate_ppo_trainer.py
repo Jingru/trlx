@@ -339,7 +339,7 @@ class AcceleratePPOTrainer(AccelerateRLTrainer):
             else:
                 all_scores = None
                 max_len = torch.tensor(0, dtype=torch.long, device=device)
-            
+
             if self.config.train.reward_only_in_main_process:
                 if torch.distributed.is_initialized():
                     torch.distributed.broadcast(max_len, 0)
